@@ -1,5 +1,3 @@
-Flask
+flask
 yt-dlp
-
-flask 
-
+gunicorn
