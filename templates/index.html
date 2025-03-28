@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader de Mídia</title>
+</head>
+<body>
+    <h1>Downloader de Mídia</h1>
+    <form id="download-form">
+        <label for="url">URL do vídeo ou playlist:</label>
+        <input type="text" id="url" name="url" required>
+        <br>
+        <label for="tipo">Tipo de download:</label>
+        <select id="tipo" name="tipo" required>
+            <option value="audio">Áudio</option>
+            <option value="video">Vídeo</option>
+        </select>
+        <br>
+        <label for="playlist">É uma playlist?</label>
+        <input type="checkbox" id="playlist" name="playlist">
+        <br>
+        <button type="submit">Baixar</button>
+    </form>
+    <p id="response"></p>
+    <script>
+        document.getElementById('download-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const url = document.getElementById('url').value;
+            const tipo = document.getElementById('tipo').value;
+            const playlist = document.getElementById('playlist').checked;
+
+            const response = await fetch('/download', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url, tipo, playlist })
+            });
+
+            const result = await response.json();
+            document.getElementById('response').textContent = result.message || result.error;
+        });
+    </script>
+</body>
+</html>
