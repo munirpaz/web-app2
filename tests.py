@@ -17,8 +17,8 @@ def baixar_audio(url, playlist=False):
         'noplaylist': not playlist,  # Garante que a playlist inteira será baixada se for uma playlist
         'postprocessors': [{  # Adicionar um pós-processador para converter para MP3
             'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',  # Convertendo para MP3
-            'preferredquality': '192',  # Qualidade do MP3
+            'preferredcodec': 'mp3',  
+            'preferredquality': '192',  
         }],
     }
 
